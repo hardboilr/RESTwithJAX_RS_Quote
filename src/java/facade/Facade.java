@@ -19,6 +19,13 @@ public class Facade {
             put(1, "Friends are kisses blown to us by angels");
             put(2, "Do not take life too seriously. You will never get out of it alive");
             put(3, "Behind every great man, is a woman rolling her eyes");
+            put(4, "Shadowy Stones");
+            put(5, "The Sleeping Thorn");
+            put(6, "Twins of Past");
+            put(7, "The Door's Person");
+            put(8, "The Emperor of the Child");
+            put(9, "Wife in the Mists");
+            put(10, "The Stripped Abyss");
         }
     };
 

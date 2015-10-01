@@ -53,7 +53,7 @@ $(document).ready(function () {
 function createQuote() {
     var quote = new Object();
     quote.quote = $("#createQuote").find('input[name="createQuoteText"]').val();
-    url = "http://localhost:8080/RESTwithJAX_RS/api/quote";
+    url = "http://localhost:8080/RESTwithJAX_RS_Quote/api/quote";
     $.ajax({
         url: url,
         type: "POST",
@@ -77,7 +77,7 @@ function createQuote() {
 function updateQuote() {
     var quote = new Object();
     quote.quote = $("#editQuote").find('input[name="updateQuoteText"]').val();
-    url = "http://localhost:8080/RESTwithJAX_RS/api/quote/" + id;
+    url = "http://localhost:8080/RESTwithJAX_RS_Quote/api/quote/" + id;
     $.ajax({
         url: url,
         type: "PUT",
@@ -99,7 +99,7 @@ function updateQuote() {
 
 function deleteQuote() {
     console.log("id is: " + id);
-    var url = "http://localhost:8080/RESTwithJAX_RS/api/quote/" + id;
+    var url = "http://localhost:8080/RESTwithJAX_RS_Quote/api/quote/" + id;
     $("#findQuote").text("");
     $.ajax({
         url: url,
@@ -119,7 +119,7 @@ function deleteQuote() {
 }
 
 function getRandomQuote() {
-    var url = "http://localhost:8080/RESTwithJAX_RS/api/quote/random";
+    var url = "http://localhost:8080/RESTwithJAX_RS_Quote/api/quote/random";
     $("#findQuote").text("");
     $.ajax({
         url: url,
@@ -138,7 +138,7 @@ function getRandomQuote() {
 function getQuotebyId() {
     id = $("#findQuote").val();
     console.log("id is: " + id);
-    var url = "http://localhost:8080/RESTwithJAX_RS/api/quote/" + id;
+    var url = "http://localhost:8080/RESTwithJAX_RS_Quote/api/quote/" + id;
     $("#findQuote").text("");
     $.ajax({
         url: url,
