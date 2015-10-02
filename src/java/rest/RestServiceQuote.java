@@ -19,7 +19,7 @@ import javax.ws.rs.core.*;
 public class RestServiceQuote {
 
     Gson gson;
-    JsonObject quoteObj;
+    JsonObject jsonObj;
     private Random random;
 
     @Context
@@ -34,18 +34,18 @@ public class RestServiceQuote {
     @Path("{id}")
     @Produces("application/json")
     public Response getQuote(@PathParam("id") int index) throws QuoteNotFoundException {
-        quoteObj = new JsonObject();
-        quoteObj.addProperty("quote", Facade.getQuote(index));
-        return Response.status(Response.Status.OK).entity(gson.toJson(quoteObj)).build();
+        jsonObj = new JsonObject();
+        jsonObj.addProperty("quote", Facade.getQuote(index));
+        return Response.status(Response.Status.OK).entity(gson.toJson(jsonObj)).build();
     }
 
     @GET
     @Path("/random")
     @Produces("application/json")
     public Response getRandomQuote() throws QuoteNotFoundException {
-        quoteObj = new JsonObject();
-        quoteObj.addProperty("quote", Facade.getRandomQuote());
-        return Response.status(Response.Status.OK).entity(gson.toJson(quoteObj)).build();
+        jsonObj = new JsonObject();
+        jsonObj.addProperty("quote", Facade.getRandomQuote());
+        return Response.status(Response.Status.OK).entity(gson.toJson(jsonObj)).build();
     }
 
     @POST
@@ -54,10 +54,10 @@ public class RestServiceQuote {
         JsonObject jsonObject = new Gson().fromJson(quoteString, JsonObject.class);
         String quote =  jsonObject.get("quote").getAsString();
         Facade.createQuote(quote);
-        quoteObj = new JsonObject();
-        quoteObj.addProperty("id", Facade.getLastIndex());
-        quoteObj.addProperty("quote", quote);
-        return Response.status(Response.Status.OK).entity(gson.toJson(quoteObj)).build();
+        jsonObj = new JsonObject();
+        jsonObj.addProperty("id", Facade.getLastIndex());
+        jsonObj.addProperty("quote", quote);
+        return Response.status(Response.Status.OK).entity(gson.toJson(jsonObj)).build();
     }
 
     @PUT
@@ -67,10 +67,10 @@ public class RestServiceQuote {
         JsonObject jsonObject = new Gson().fromJson(quoteString, JsonObject.class);
         String quote =  jsonObject.get("quote").getAsString();
         Facade.updateQuote(id, quote);
-        quoteObj = new JsonObject();
-        quoteObj.addProperty("id", id);
-        quoteObj.addProperty("quote", quote);
-        return Response.status(Response.Status.OK).entity(gson.toJson(quoteObj)).build();
+        jsonObj = new JsonObject();
+        jsonObj.addProperty("id", id);
+        jsonObj.addProperty("quote", quote);
+        return Response.status(Response.Status.OK).entity(gson.toJson(jsonObj)).build();
     }
 
     @DELETE
@@ -80,9 +80,9 @@ public class RestServiceQuote {
     public Response deleteQuote(@PathParam("id") int id) throws QuoteNotFoundException {
         String quote = Facade.getQuote(id);
         Facade.deleteQuote(id);
-        quoteObj = new JsonObject();
+        jsonObj = new JsonObject();
 //        quoteObj.addProperty("id", id);
-        quoteObj.addProperty("quote", quote);
-        return Response.status(Response.Status.OK).entity(gson.toJson(quoteObj)).build();
+        jsonObj.addProperty("quote", quote);
+        return Response.status(Response.Status.OK).entity(gson.toJson(jsonObj)).build();
     }
 }
